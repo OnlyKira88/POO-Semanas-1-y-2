@@ -1,0 +1,55 @@
+class Estudiante:
+
+    def __init__(self, nombre, nota1, nota2, nota3):
+        self.__nombre = nombre
+        self.__nota1 = nota1
+        self.__nota2 = nota2
+        self.__nota3 = nota3
+
+    def get_nombre(self):
+        return self.__nombre
+
+    def get_nota1(self):
+        return self.__nota1 
+
+    def get_nota2(self):
+        return self.__nota2
+
+    def get_nota3(self):
+        return self.__nota3
+
+
+    def set_nombre(self, nombre):
+        self.__nombre = nombre
+
+    def set_nota1(self, nota1):
+        self.__nota1 = nota1
+
+    def set_nota2(self, nota2):
+        self.__nota2 = nota2
+
+    def set_nota3(self, nota3):
+        self.__nota3 = nota3
+
+
+    def calcular_promedio(self):
+        return (self.__nota1 + self.__nota2 + self.__nota3) / 3
+
+nombre = input("nombre: ")
+
+nota1 = float(input("nota 1: "))
+nota2 = float(input("nota 2: "))
+nota3 = float(input("nota 3: "))
+
+estudiante1 = Estudiante(nombre, nota1, nota2, nota3)
+
+promedio = estudiante1.calcular_promedio()
+
+print("RESULTADO")
+print("Nombre:", estudiante1.get_nombre())
+print("Promedio:", promedio)
+
+if promedio > 7:
+    print("Aprobaste")
+else:
+    print("Reprobaste")
