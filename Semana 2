@@ -1,4 +1,4 @@
-
+from semana1 import Estudiante
 
 
 class Universidad:
