@@ -21,7 +21,7 @@ while nota3 < 0 or nota3 > 10:
 
 universidad1 = Universidad(universidad)
 
-estudiante1 = EstudianteUniversitari(
+estudiante1 = EstudianteUniversitario(
     nombre,
     nota1,
     nota2,
