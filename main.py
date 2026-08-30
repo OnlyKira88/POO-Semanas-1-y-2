@@ -22,14 +22,13 @@ while nota3 < 0 or nota3 > 10:
 
 universidad1 = Universidad(universidad)
 
-estudiante1 = EstudianteUniversitario(
+estudiante1 = EstudianteUniversitari(
     nombre,
     nota1,
     nota2,
     nota3,
     universidad1
 )
-
 
 promedio = estudiante1.calcular_promedio()
 
