@@ -1,1 +1,18 @@
+from abc import ABC, abstractmethod
 
+class Cliente(ABC):
+
+    @abstractmethod
+    def calcularDescuento(self, precio):
+        pass
+
+class ClienteMayorista(Cliente):
+
+    def calcularDescuento(self, precio):
+        return precio * 0.15
+
+
+class ClienteMinorista(Cliente):
+
+    def calcularDescuento(self, precio):
+        return precio * 0.05
