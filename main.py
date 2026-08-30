@@ -19,7 +19,6 @@ while nota3 < 0 or nota3 > 10:
     print("La nota debe estar entre 0 y 10.")
     nota3 = float(input("Nota 3 (0-10): "))
 
-
 universidad1 = Universidad(universidad)
 
 estudiante1 = EstudianteUniversitari(
@@ -29,7 +28,6 @@ estudiante1 = EstudianteUniversitari(
     nota3,
     universidad1
 )
-
 promedio = estudiante1.calcular_promedio()
 
 if promedio > 7:
@@ -38,7 +36,6 @@ if promedio > 7:
 else:
     cliente = ClienteMinorista()
     estado = "Reprobaste"
-
 
 precio = 172
 
