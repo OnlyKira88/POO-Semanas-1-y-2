@@ -31,8 +31,7 @@ class Estudiante:
     def set_nota3(self, nota3):
         self.__nota3 = nota3
 
-
     def calcular_promedio(self):
-        return (self.__nota1 + self.__nota2 + self.__nota3) / 3
+     return (self.__nota1 + self.__nota2 + self.__nota3) / 3
 
 
