@@ -1,81 +1,168 @@
-# Proyecto POO - Semanas 1, 2 y 3
+# Proyecto de Programación Orientada a Objetos
+
+## Nombre del estudiante
+
+Fernando Ramirez Almeida
 
 ## Descripción
 
-Este proyecto integra los conocimientos desarrollados durante las semanas 1, 2 y 3 de Programación Orientada a Objetos (POO) utilizando Python.
+Este proyecto fue desarrollado en Python con el objetivo de aplicar los principales conceptos de la Programación Orientada a Objetos (POO) aprendidos durante las semanas 1, 2 y 3.
 
-Durante el proyecto se aplican los conceptos de clases, objetos, encapsulación, herencia, composición, clases abstractas, sobrescritura de métodos y polimorfismo.
+El programa permite ingresar los datos de un estudiante, su universidad y tres notas. Luego calcula el promedio, determina si el estudiante aprobó o reprobó y aplica un descuento dependiendo del tipo de cliente.
 
-## Organización del código
+## Objetivo
 
-El proyecto está organizado en los siguientes archivos:
+Aplicar los conceptos de Programación Orientada a Objetos mediante un programa desarrollado en Python, utilizando clases, objetos, encapsulación, herencia, composición, abstracción y polimorfismo.
 
-- `semana1.py`: contiene la clase `Estudiante`. Se aplican conceptos de clases, objetos y encapsulación mediante atributos privados y métodos getters y setters. También contiene el método para calcular el promedio.
+## Organización del proyecto
 
-- `semana2.py`: contiene las clases `Universidad` y `EstudianteUniversitario`. `EstudianteUniversitario` hereda de `Estudiante` y utiliza composición con la clase `Universidad`.
+El proyecto está dividido en los siguientes archivos:
 
-- `semana3.py`: contiene la clase abstracta `Cliente` y las clases `ClienteMayorista` y `ClienteMinorista`. Ambas clases heredan de `Cliente` y sobrescriben el método `calcularDescuento()` con diferentes porcentajes.
+- `main.py`: Archivo principal que ejecuta el programa.
+- `semana1.py`: Contiene la clase `Estudiante` y aplica encapsulación.
+- `semana2.py`: Contiene las clases `Universidad` y `EstudianteUniversitario`, aplicando herencia y composición.
+- `semana3.py`: Contiene la clase abstracta `Cliente` y las clases `ClienteMayorista` y `ClienteMinorista`, aplicando abstracción y polimorfismo.
 
-- `main.py`: contiene la ejecución principal del programa. Solicita los datos del estudiante, crea los objetos, calcula el promedio y determina el descuento correspondiente.
+## Principales funcionalidades
 
-## Funcionamiento del programa
+- Ingreso del nombre del estudiante.
+- Ingreso de la universidad.
+- Ingreso de tres notas.
+- Validación de las notas entre 0 y 10.
+- Cálculo del promedio.
+- Determinación del estado del estudiante.
+- Aplicación de descuentos según el tipo de cliente.
+- Demostración de abstracción.
+- Demostración de herencia.
+- Demostración de composición.
+- Demostración de polimorfismo.
 
-Al ejecutar `main.py`, el programa solicita el nombre del estudiante, la universidad y tres notas.
+## Conceptos de POO utilizados
 
-Con los datos ingresados se crea un objeto de tipo `EstudianteUniversitario`, que hereda de `Estudiante` y se relaciona mediante composición con un objeto de tipo `Universidad`.
+### Encapsulación
 
-El programa calcula el promedio de las tres notas.
+La clase `Estudiante` utiliza atributos privados para proteger la información del estudiante. Para acceder y modificar estos atributos se utilizan métodos `get` y `set`.
 
-Si el promedio es mayor a 7, el estudiante aprueba y se utiliza un objeto `ClienteMayorista`, que aplica un descuento del 15%.
+### Herencia
 
-Si el promedio es menor o igual a 7, el estudiante reprueba y se utiliza un objeto `ClienteMinorista`, que aplica un descuento del 5%.
+La clase `EstudianteUniversitario` hereda de la clase `Estudiante`, permitiendo reutilizar sus atributos y métodos.
 
-El precio establecido para la universidad es de $172.
+### Composición
+
+La clase `EstudianteUniversitario` contiene un objeto de tipo `Universidad`, estableciendo una relación entre ambas clases.
+
+### Abstracción
+
+La clase `Cliente` es una clase abstracta que define el método `calcularDescuento`.
+
+### Polimorfismo
+
+Las clases `ClienteMayorista` y `ClienteMinorista` implementan el mismo método `calcularDescuento`, pero cada una tiene un comportamiento diferente.
+
+El cliente mayorista obtiene un descuento del 15%, mientras que el cliente minorista obtiene un descuento del 5%.
 
 ## Cálculo de descuentos
 
-Para los estudiantes que aprueban:
+El programa utiliza un precio de $172.
 
-- Precio: $172
-- Descuento: 15%
-- Descuento aplicado: $25.80
-- Precio final: $146.20
+### Cliente mayorista
 
-Para los estudiantes que reprueban:
+Descuento del 15%:
 
-- Precio: $172
-- Descuento: 5%
-- Descuento aplicado: $8.60
-- Precio final: $163.40
+$172 × 0.15 = $25.80
 
-## Validación de datos
+Precio final:
 
-Las notas ingresadas por el usuario se validan para asegurar que estén dentro del rango de 0 a 10.
+$172 - $25.80 = $146.20
 
-Si se ingresa una nota menor que 0 o mayor que 10, el programa muestra un mensaje y solicita nuevamente el valor.
+### Cliente minorista
 
-Las notas se convierten a valores numéricos mediante `float` para poder realizar el cálculo del promedio.
+Descuento del 5%:
 
-## Polimorfismo
+$172 × 0.05 = $8.60
 
-El polimorfismo se aplica mediante la clase abstracta `Cliente`.
+Precio final:
 
-Las clases `ClienteMayorista` y `ClienteMinorista` sobrescriben el método `calcularDescuento()` y utilizan una lógica diferente para calcular el descuento.
+$172 - $8.60 = $163.40
 
-El programa puede trabajar con ambos tipos de cliente mediante la misma referencia `cliente`, sin necesitar diferentes instrucciones para calcular el descuento.
+## Validación
 
-## Clase abstracta
+El programa valida que las notas ingresadas estén entre 0 y 10.
 
-La clase `Cliente` es una clase abstracta que establece el método `calcularDescuento()`.
-
-Las clases `ClienteMayorista` y `ClienteMinorista` heredan de `Cliente` y proporcionan su propia implementación del método.
-
-## Librerías
-
-El proyecto no utiliza librerías externas. Se utiliza el módulo `abc`, que forma parte de la biblioteca estándar de Python, para implementar la clase abstracta.
+Si el usuario ingresa una nota fuera de este rango, el programa solicita nuevamente la nota.
 
 ## Ejecución
 
-Para ejecutar el proyecto se debe ejecutar el archivo:
+Para ejecutar el proyecto se debe abrir el archivo `main.py` y seleccionar:
 
-`main.py`
+**Run → Run Without Debugging**
+
+El programa solicitará el nombre, universidad y las tres notas.
+
+## Evidencias de pruebas
+
+### Prueba 1: Estudiante aprobado
+
+Datos utilizados:
+
+- Nombre: Fernando
+- Universidad: UEES
+- Nota 1: 9
+- Nota 2: 8
+- Nota 3: 9
+
+Promedio: 8.67
+
+Resultado: Aprobaste
+
+Tipo de cliente: Mayorista
+
+Descuento: 15%
+
+Precio final: $146.20
+
+### Prueba 2: Estudiante reprobado
+
+Datos utilizados:
+
+- Nombre: Fernando
+- Universidad: UEES
+- Nota 1: 6
+- Nota 2: 7
+- Nota 3: 3
+
+Promedio: 5.33
+
+Resultado: Reprobaste
+
+Tipo de cliente: Minorista
+
+Descuento: 5%
+
+Precio final: $163.40
+
+### Demostración del polimorfismo
+
+El polimorfismo se demuestra mediante el método `calcularDescuento`.
+
+Cuando el objeto es de tipo `ClienteMayorista`, se aplica un descuento del 15%.
+
+Cuando el objeto es de tipo `ClienteMinorista`, se aplica un descuento del 5%.
+
+Aunque se utiliza el mismo método, el comportamiento cambia dependiendo del objeto.
+
+## Lenguaje utilizado
+
+Python
+
+## Librerías utilizadas
+
+El proyecto utiliza la librería estándar `abc` de Python para implementar la clase abstracta.
+
+No se utilizan librerías externas.
+
+## Conclusión
+
+Este proyecto permitió aplicar los principales conceptos de Programación Orientada a Objetos mediante un programa funcional desarrollado en Python.
+
+Se utilizaron clases, objetos, encapsulación, herencia, composición, abstracción y polimorfismo.
