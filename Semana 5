@@ -32,3 +32,89 @@ class Producto:
         print("Nombre:", self.__nombre)
         print("Precio:", self.__precio)
         print("Categoría:", self.__categoria)
+
+class Catalogo:
+
+    def __init__(self):
+        self.productos = []
+        self.productos_por_id = {}
+        self.ids = set()
+
+    def agregar(self, producto):
+        if producto.get_id() in self.ids:
+            print("Error: ya existe un producto con ese ID.")
+            return
+
+        self.productos.append(producto)
+        self.productos_por_id[producto.get_id()] = producto
+        self.ids.add(producto.get_id())
+        print("Producto agregado correctamente.")
+
+    def buscar(self, id):
+    return self.productos_por_id.get(id)
+
+    def listar(self):
+        if len(self.productos) == 0:
+            print("El catálogo está vacío.")
+            return
+        for producto in self.productos:
+            producto.mostrar_informacion()
+            print("--------------------")
+
+    def actualizar(self, id, nombre, precio, categoria):
+        producto = self.buscar(id)
+
+        if producto is None:
+            print("Error: producto no encontrado.")
+            return
+        producto.set_nombre(nombre)
+        producto.set_precio(precio)
+        producto.set_categoria(categoria)
+        print("Producto actualizado correctamente.")
+
+    def eliminar(self, id):
+        producto = self.buscar(id)
+        if producto is None:
+            print("Error: producto no encontrado.")
+            return
+
+        self.productos.remove(producto)
+        del self.productos_por_id[id]
+        self.ids.remove(id)
+
+        print("Producto eliminado correctamente.")
+
+
+catalogo = Catalogo()
+
+producto1 = Producto(1, "Laptop", 800, "Tecnología")
+producto2 = Producto(2, "Mouse", 20, "Accesorios")
+producto3 = Producto(3, "Teclado", 35, "Accesorios")
+
+print("AGREGAR PRODUCTOS")
+catalogo.agregar(producto1)
+catalogo.agregar(producto2)
+catalogo.agregar(producto3)
+
+print("LISTAR PRODUCTOS")
+catalogo.listar()
+
+print("BUSCAR PRODUCTO")
+producto = catalogo.buscar(2)
+
+if producto:
+    producto.mostrar_informacion()
+else:
+    print("Producto no encontrado.")
+
+print("ACTUALIZAR PRODUCTO")
+catalogo.actualizar(2, "Mouse Gamer", 30, "Gaming")
+
+print("LISTA ACTUALIZADA")
+catalogo.listar()
+
+print("ELIMINAR PRODUCTO")
+catalogo.eliminar(3)
+
+print("LISTA FINAL")
+catalogo.listar()
