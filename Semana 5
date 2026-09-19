@@ -1,0 +1,34 @@
+class Producto:
+
+    def __init__(self, id, nombre, precio, categoria):
+        self.__id = id
+        self.__nombre = nombre
+        self.__precio = precio
+        self.__categoria = categoria
+
+    def get_id(self):
+        return self.__id
+
+    def get_nombre(self):
+        return self.__nombre
+
+    def get_precio(self):
+        return self.__precio
+
+    def get_categoria(self):
+        return self.__categoria
+
+    def set_nombre(self, nombre):
+        self.__nombre = nombre
+
+    def set_precio(self, precio):
+        self.__precio = precio
+
+    def set_categoria(self, categoria):
+        self.__categoria = categoria
+
+    def mostrar_informacion(self):
+        print("ID:", self.__id)
+        print("Nombre:", self.__nombre)
+        print("Precio:", self.__precio)
+        print("Categoría:", self.__categoria)
