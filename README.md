@@ -217,15 +217,6 @@ Si los datos son incorrectos, se muestra un mensaje de error.
 
 Si el producto se agrega correctamente, se muestra un mensaje de confirmación.
 
-## Ejecución de las Semanas 5 y 6
-
-### Semana 5
-
-Para ejecutar las pruebas del catálogo:
-
-```bash
-python semana5.py
-
 ## Lenguaje utilizado
 
 Python
@@ -235,11 +226,6 @@ Python
 El proyecto utiliza la librería estándar `abc` de Python para implementar la clase abstracta.
 
 También se utiliza la librería externa `flet` para desarrollar la interfaz gráfica de la semana 6.
-
-Para instalar Flet:
-
-```bash
-pip install flet
 
 ## Conclusión
 
