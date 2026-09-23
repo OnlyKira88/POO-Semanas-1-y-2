@@ -6,7 +6,7 @@ Fernando Ramirez Almeida
 
 ## Descripción
 
-Este proyecto fue desarrollado en Python con el objetivo de aplicar los principales conceptos de la Programación Orientada a Objetos (POO) aprendidos durante las semanas 1, 2 y 3.
+Este proyecto fue desarrollado en Python con el objetivo de aplicar los principales conceptos de la Programación Orientada a Objetos (POO) aprendidos durante las semanas 1, 2 3, 5, 6
 
 El programa permite ingresar los datos de un estudiante, su universidad y tres notas. Luego calcula el promedio, determina si el estudiante aprobó o reprobó y aplica un descuento dependiendo del tipo de cliente.
 
@@ -22,6 +22,8 @@ El proyecto está dividido en los siguientes archivos:
 - `semana1.py`: Contiene la clase `Estudiante` y aplica encapsulación.
 - `semana2.py`: Contiene las clases `Universidad` y `EstudianteUniversitario`, aplicando herencia y composición.
 - `semana3.py`: Contiene la clase abstracta `Cliente` y las clases `ClienteMayorista` y `ClienteMinorista`, aplicando abstracción y polimorfismo.
+- `semana5.py`: Contiene las clases `Producto` y `Catalogo`, utilizando List, Dict y Set para administrar los productos.
+- `semana6.py`: Contiene la interfaz gráfica desarrollada con Flet y el manejo de eventos.
 
 ## Principales funcionalidades
 
@@ -151,6 +153,79 @@ Cuando el objeto es de tipo `ClienteMinorista`, se aplica un descuento del 5%.
 
 Aunque se utiliza el mismo método, el comportamiento cambia dependiendo del objeto.
 
+## Semana 5: Colecciones y CRUD
+
+En la semana 5 se desarrolló un catálogo de productos utilizando Python.
+
+Cada producto contiene:
+
+- ID
+- Nombre
+- Precio
+- Categoría
+
+La clase `Catalogo` permite realizar las siguientes operaciones:
+
+- Agregar productos.
+- Buscar productos.
+- Listar productos.
+- Actualizar productos.
+- Eliminar productos.
+
+### Colecciones utilizadas
+
+Se utilizaron tres tipos de colecciones:
+
+- **List:** se utiliza para almacenar los productos.
+- **Dict:** se utiliza para buscar los productos mediante su ID.
+- **Set:** se utiliza para almacenar los IDs y evitar productos duplicados.
+
+### Validación
+
+El programa verifica que no se pueda agregar más de un producto con el mismo ID.
+
+## Semana 6: Interfaz gráfica y manejo de eventos
+
+En la semana 6 se desarrolló una interfaz gráfica utilizando la librería Flet.
+
+La interfaz permite ingresar:
+
+- ID del producto.
+- Nombre.
+- Precio.
+- Categoría.
+
+También contiene un botón para agregar productos al catálogo.
+
+### Manejo de eventos
+
+El botón "Agregar producto" utiliza el evento `on_click` para ejecutar la función correspondiente cuando el usuario presiona el botón.
+
+La función obtiene los datos ingresados, valida la información y agrega el producto al catálogo.
+
+### Validación de datos
+
+La interfaz verifica que:
+
+- El ID sea un número.
+- El precio sea un número.
+- El nombre no esté vacío.
+- La categoría no esté vacía.
+- No exista otro producto con el mismo ID.
+
+Si los datos son incorrectos, se muestra un mensaje de error.
+
+Si el producto se agrega correctamente, se muestra un mensaje de confirmación.
+
+## Ejecución de las Semanas 5 y 6
+
+### Semana 5
+
+Para ejecutar las pruebas del catálogo:
+
+```bash
+python semana5.py
+
 ## Lenguaje utilizado
 
 Python
@@ -159,7 +234,12 @@ Python
 
 El proyecto utiliza la librería estándar `abc` de Python para implementar la clase abstracta.
 
-No se utilizan librerías externas.
+También se utiliza la librería externa `flet` para desarrollar la interfaz gráfica de la semana 6.
+
+Para instalar Flet:
+
+```bash
+pip install flet
 
 ## Conclusión
 
