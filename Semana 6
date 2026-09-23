@@ -1,0 +1,66 @@
+import flet
+import flet as ft
+from semana5 import Producto, Catalogo
+
+def main(page: ft.Page):
+    page.title = "Catalogo de Productos"
+    page.scroll = "auto"
+
+    catalogo = Catalogo()
+
+    titulo = ft.Text("CATALOGO DE PRODUCTOS")
+    campo_id = ft.TextField(label="ID del producto")
+    campo_nombre = ft.TextField(label="Nombre")
+    campo_precio = ft.TextField(label="Precio")
+    campo_categoria = ft.TextField(label="Categoria")
+    mensaje = ft.Text(color="blue")
+    lista_productos = ft.Column()
+
+    def agregar_producto(e):
+        try:
+            id_producto = int(campo_id.value)
+            nombre = campo_nombre.value.strip()
+            precio = float(campo_precio.value)
+            categoria = campo_categoria.value.strip()
+
+            if nombre == "" or categoria == "":
+                mensaje.value = "Complete todos los campos."
+                page.update()
+                return
+            
+            if id_producto in catalogo.ids:
+                mensaje.value = f"Error: el ID {id_producto} ya existe."
+                page.update()
+                return
+
+            producto = Producto(id_producto, nombre, precio, categoria)
+            catalogo.agregar(producto)
+            mensaje.value = "Producto agregado correctamente."
+            lista_productos.controls.append(
+                ft.Text(f"{id_producto} - {nombre} - ${precio} - {categoria}")
+            )
+            
+            campo_id.value = ""
+            campo_nombre.value = ""
+            campo_precio.value = ""
+            campo_categoria.value = ""
+            page.update()
+
+        except ValueError:
+            mensaje.value = "ID y precio deben ser numeros."
+            page.update()
+
+    boton_agregar = ft.ElevatedButton(text="Agregar producto", on_click=agregar_producto)
+
+    page.add(
+        titulo,
+        campo_id,
+        campo_nombre,
+        campo_precio,
+        campo_categoria,
+        boton_agregar,
+        mensaje,
+        ft.Divider(),
+        lista_productos
+    )
+flet.app(target=main)
