@@ -1,0 +1,166 @@
+class Cliente:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Cola:
+    def __init__(self):
+        self.elementos = []
+
+    def agregar(self, e):
+        self.elementos.append(e)
+
+    def eliminar(self):
+        if not self.elementos:
+            return None
+        return self.elementos.pop(0)
+    
+    def siguiente(self):
+        if not self.elementos:
+            return None
+        return self.elementos[0]
+
+    def esta_vacia(self):
+        return len(self.elementos) == 0
+
+    def cantidad(self):
+        return len(self.elementos)
+
+class ClienteRepository:
+    def __init__(self):
+        self.cola = Cola()
+
+    def agregar_cliente(self, c):
+        self.cola.agregar(c)
+
+    def obtener_siguiente(self):
+        return self.cola.siguiente()
+
+    def atender_cliente(self):
+        return self.cola.eliminar()
+
+    def cantidad_clientes(self):
+        return self.cola.cantidad()
+
+    def esta_vacio(self):
+        return self.cola.esta_vacia()
+
+def main():
+
+    repo = ClienteRepository()
+
+    while True:
+
+        print()
+        print("================================")
+        print("   COLA DE ATENCIÓN AL CLIENTE")
+        print("================================")
+        print("1. Agregar cliente")
+        print("2. Ver siguiente cliente")
+        print("3. Atender cliente")
+        print("4. Ver cantidad de clientes")
+        print("5. Verificar si la cola está vacía")
+        print("6. Salir")
+        print("================================")
+
+        opcion = input("Seleccione una opción: ").strip()
+
+        if opcion == "1":
+
+            nombre = input("Ingrese el nombre: ").strip()
+
+            if nombre:
+                repo.agregar_cliente(Cliente(nombre))
+
+                print(
+                    f"Cliente '{nombre}' agregado. "
+                    f"Total: {repo.cantidad_clientes()}"
+                )
+            else:
+                print("El nombre no puede estar vacío.")
+        elif opcion == "2":
+
+            c = repo.obtener_siguiente()
+
+            if c:
+                print(f"Siguiente en cola: {c.nombre}")
+            else:
+                print("La cola está vacía.")
+
+        elif opcion == "3":
+
+            c = repo.atender_cliente()
+
+            if c:
+                print(f"Atendiendo a: {c.nombre}")
+            else:
+                print("No hay clientes para atender.")
+
+        elif opcion == "4":
+
+            print(f"Cantidad de clientes: {repo.cantidad_clientes()}")
+
+        elif opcion == "5":
+
+            if repo.esta_vacio():
+                print("La cola está vacía.")
+            else:
+                print("La cola tiene clientes.")
+
+        elif opcion == "6":
+
+            print("Programa finalizado.")
+            break
+
+        else:
+
+            print("Opción no válida.")
+
+def test_agregar_cliente():
+
+    repo = ClienteRepository()
+
+    repo.agregar_cliente(Cliente("Fernando"))
+
+    assert repo.cantidad_clientes() == 1
+
+def test_obtener_siguiente():
+
+    repo = ClienteRepository()
+
+    repo.agregar_cliente(Cliente("Fernando"))
+    repo.agregar_cliente(Cliente("Carlos"))
+
+    cliente = repo.obtener_siguiente()
+
+    assert cliente.nombre == "Fernando"
+
+def test_atender_cliente():
+
+    repo = ClienteRepository()
+
+    repo.agregar_cliente(Cliente("Fernando"))
+    repo.agregar_cliente(Cliente("Carlos"))
+
+    cliente = repo.atender_cliente()
+
+    assert cliente.nombre == "Fernando"
+    assert repo.cantidad_clientes() == 1
+
+def test_cola_vacia():
+
+    repo = ClienteRepository()
+
+    assert repo.esta_vacio() is True
+
+def test_cantidad_clientes():
+
+    repo = ClienteRepository()
+
+    repo.agregar_cliente(Cliente("Fernando"))
+    repo.agregar_cliente(Cliente("Carlos"))
+    repo.agregar_cliente(Cliente("Ana"))
+
+    assert repo.cantidad_clientes() == 3
+
+if __name__ == "__main__":
+    main()
