@@ -6,13 +6,13 @@ Fernando Ramirez Almeida
 
 ## Descripción
 
-Este proyecto fue desarrollado en Python con el objetivo de aplicar los principales conceptos de la Programación Orientada a Objetos (POO) aprendidos durante las semanas 1, 2 3, 5, 6
+Este proyecto fue desarrollado en Python con el objetivo de aplicar los principales conceptos de la Programación Orientada a Objetos (POO) aprendidos durante las semanas 1, 2, 3, 5, 6 y 7.
 
-El programa permite ingresar los datos de un estudiante, su universidad y tres notas. Luego calcula el promedio, determina si el estudiante aprobó o reprobó y aplica un descuento dependiendo del tipo de cliente.
+El proyecto contiene diferentes ejercicios en los que se aplican conceptos de POO, colecciones, interfaces gráficas, manejo de eventos, estructuras de datos abstractas, patrones de diseño y pruebas unitarias.
 
 ## Objetivo
 
-Aplicar los conceptos de Programación Orientada a Objetos mediante un programa desarrollado en Python, utilizando clases, objetos, encapsulación, herencia, composición, abstracción y polimorfismo.
+Aplicar los conceptos de Programación Orientada a Objetos mediante programas desarrollados en Python, utilizando clases, objetos, encapsulación, herencia, composición, abstracción, polimorfismo, colecciones, interfaces gráficas, patrones de diseño y pruebas unitarias.
 
 ## Organización del proyecto
 
@@ -24,6 +24,7 @@ El proyecto está dividido en los siguientes archivos:
 - `semana3.py`: Contiene la clase abstracta `Cliente` y las clases `ClienteMayorista` y `ClienteMinorista`, aplicando abstracción y polimorfismo.
 - `semana5.py`: Contiene las clases `Producto` y `Catalogo`, utilizando List, Dict y Set para administrar los productos.
 - `semana6.py`: Contiene la interfaz gráfica desarrollada con Flet y el manejo de eventos.
+- `semana7.py`: Contiene una cola de atención al cliente, el patrón Repository y pruebas unitarias utilizando pytest.
 
 ## Principales funcionalidades
 
@@ -38,6 +39,12 @@ El proyecto está dividido en los siguientes archivos:
 - Demostración de herencia.
 - Demostración de composición.
 - Demostración de polimorfismo.
+- Administración de productos mediante colecciones.
+- Interfaz gráfica para el catálogo de productos.
+- Manejo de eventos.
+- Cola de atención al cliente.
+- Patrón Repository.
+- Pruebas unitarias con pytest.
 
 ## Conceptos de POO utilizados
 
@@ -95,140 +102,9 @@ Si el usuario ingresa una nota fuera de este rango, el programa solicita nuevame
 
 ## Ejecución
 
-Para ejecutar el proyecto se debe abrir el archivo `main.py` y seleccionar:
+Para ejecutar los programas se debe abrir el archivo correspondiente en Visual Studio Code y ejecutar el programa.
 
-**Run → Run Without Debugging**
+Para la semana 7 se debe ejecutar:
 
-El programa solicitará el nombre, universidad y las tres notas.
-
-## Evidencias de pruebas
-
-### Prueba 1: Estudiante aprobado
-
-Datos utilizados:
-
-- Nombre: Fernando
-- Universidad: UEES
-- Nota 1: 9
-- Nota 2: 8
-- Nota 3: 9
-
-Promedio: 8.67
-
-Resultado: Aprobaste
-
-Tipo de cliente: Mayorista
-
-Descuento: 15%
-
-Precio final: $146.20
-
-### Prueba 2: Estudiante reprobado
-
-Datos utilizados:
-
-- Nombre: Fernando
-- Universidad: UEES
-- Nota 1: 6
-- Nota 2: 7
-- Nota 3: 3
-
-Promedio: 5.33
-
-Resultado: Reprobaste
-
-Tipo de cliente: Minorista
-
-Descuento: 5%
-
-Precio final: $163.40
-
-### Demostración del polimorfismo
-
-El polimorfismo se demuestra mediante el método `calcularDescuento`.
-
-Cuando el objeto es de tipo `ClienteMayorista`, se aplica un descuento del 15%.
-
-Cuando el objeto es de tipo `ClienteMinorista`, se aplica un descuento del 5%.
-
-Aunque se utiliza el mismo método, el comportamiento cambia dependiendo del objeto.
-
-## Semana 5: Colecciones y CRUD
-
-En la semana 5 se desarrolló un catálogo de productos utilizando Python.
-
-Cada producto contiene:
-
-- ID
-- Nombre
-- Precio
-- Categoría
-
-La clase `Catalogo` permite realizar las siguientes operaciones:
-
-- Agregar productos.
-- Buscar productos.
-- Listar productos.
-- Actualizar productos.
-- Eliminar productos.
-
-### Colecciones utilizadas
-
-Se utilizaron tres tipos de colecciones:
-
-- **List:** se utiliza para almacenar los productos.
-- **Dict:** se utiliza para buscar los productos mediante su ID.
-- **Set:** se utiliza para almacenar los IDs y evitar productos duplicados.
-
-### Validación
-
-El programa verifica que no se pueda agregar más de un producto con el mismo ID.
-
-## Semana 6: Interfaz gráfica y manejo de eventos
-
-En la semana 6 se desarrolló una interfaz gráfica utilizando la librería Flet.
-
-La interfaz permite ingresar:
-
-- ID del producto.
-- Nombre.
-- Precio.
-- Categoría.
-
-También contiene un botón para agregar productos al catálogo.
-
-### Manejo de eventos
-
-El botón "Agregar producto" utiliza el evento `on_click` para ejecutar la función correspondiente cuando el usuario presiona el botón.
-
-La función obtiene los datos ingresados, valida la información y agrega el producto al catálogo.
-
-### Validación de datos
-
-La interfaz verifica que:
-
-- El ID sea un número.
-- El precio sea un número.
-- El nombre no esté vacío.
-- La categoría no esté vacía.
-- No exista otro producto con el mismo ID.
-
-Si los datos son incorrectos, se muestra un mensaje de error.
-
-Si el producto se agrega correctamente, se muestra un mensaje de confirmación.
-
-## Lenguaje utilizado
-
-Python
-
-## Librerías utilizadas
-
-El proyecto utiliza la librería estándar `abc` de Python para implementar la clase abstracta.
-
-También se utiliza la librería externa `flet` para desarrollar la interfaz gráfica de la semana 6.
-
-## Conclusión
-
-Este proyecto permitió aplicar los principales conceptos de Programación Orientada a Objetos mediante un programa funcional desarrollado en Python.
-
-Se utilizaron clases, objetos, encapsulación, herencia, composición, abstracción y polimorfismo.
+```bash
+python semana7,py
