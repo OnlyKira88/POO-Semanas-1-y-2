@@ -39,6 +39,12 @@ El proyecto está dividido en los siguientes archivos:
 - Demostración de herencia.
 - Demostración de composición.
 - Demostración de polimorfismo.
+-  Gestión de productos mediante operaciones CRUD.
+- Interfaz gráfica para administrar el catálogo de productos.
+- Manejo de eventos mediante botones.
+- Administración de una cola de atención al cliente.
+- Implementación del patrón Repository.
+- Pruebas unitarias utilizando pytest.
 
 ## Conceptos de POO utilizados
 
@@ -196,13 +202,12 @@ La interfaz permite ingresar:
 - Precio.
 - Categoría.
 
-También contiene un botón para agregar productos al catálogo.
-
+La interfaz permite realizar las operaciones de agregar, buscar, actualizar y eliminar productos mediante botones.
 ### Manejo de eventos
 
-El botón "Agregar producto" utiliza el evento `on_click` para ejecutar la función correspondiente cuando el usuario presiona el botón.
+Los botones utilizan el evento `on_click` para ejecutar las funciones correspondientes cuando el usuario realiza una acción.
 
-La función obtiene los datos ingresados, valida la información y agrega el producto al catálogo.
+Las funciones obtienen los datos ingresados, validan la información y realizan las operaciones correspondientes sobre el catálogo.
 
 ### Validación de datos
 
