@@ -33,6 +33,7 @@ class Producto:
         print("Precio:", self.__precio)
         print("Categoría:", self.__categoria)
 
+
 class Catalogo:
 
     def __init__(self):
@@ -48,15 +49,17 @@ class Catalogo:
         self.productos.append(producto)
         self.productos_por_id[producto.get_id()] = producto
         self.ids.add(producto.get_id())
+
         print("Producto agregado correctamente.")
 
     def buscar(self, id):
-    return self.productos_por_id.get(id)
+        return self.productos_por_id.get(id)
 
     def listar(self):
         if len(self.productos) == 0:
             print("El catálogo está vacío.")
             return
+
         for producto in self.productos:
             producto.mostrar_informacion()
             print("--------------------")
@@ -67,13 +70,16 @@ class Catalogo:
         if producto is None:
             print("Error: producto no encontrado.")
             return
+
         producto.set_nombre(nombre)
         producto.set_precio(precio)
         producto.set_categoria(categoria)
+
         print("Producto actualizado correctamente.")
 
     def eliminar(self, id):
         producto = self.buscar(id)
+
         if producto is None:
             print("Error: producto no encontrado.")
             return
@@ -84,9 +90,7 @@ class Catalogo:
 
         print("Producto eliminado correctamente.")
 
-
 catalogo = Catalogo()
-
 producto1 = Producto(1, "Laptop", 800, "Tecnología")
 producto2 = Producto(2, "Mouse", 20, "Accesorios")
 producto3 = Producto(3, "Teclado", 35, "Accesorios")
