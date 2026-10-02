@@ -1,55 +1,206 @@
-from semana2 import Universidad, EstudianteUniversitario
-from semana3 import ClienteMayorista, ClienteMinorista
+import flet as ft
+from semana5 import Producto, Catalogo
 
-nombre = input("Nombre: ")
-universidad = input("Universidad: ")
 
-nota1 = float(input("Nota 1 (0-10): "))
-while nota1 < 0 or nota1 > 10:
-    print("La nota debe estar entre 0 y 10.")
-    nota1 = float(input("Nota 1 (0-10): "))
+def main(page: ft.Page):
 
-nota2 = float(input("Nota 2 (0-10): "))
-while nota2 < 0 or nota2 > 10:
-    print("La nota debe estar entre 0 y 10.")
-    nota2 = float(input("Nota 2 (0-10): "))
+    page.title = "Catálogo de Productos"
+    page.scroll = "auto"
 
-nota3 = float(input("Nota 3 (0-10): "))
-while nota3 < 0 or nota3 > 10:
-    print("La nota debe estar entre 0 y 10.")
-    nota3 = float(input("Nota 3 (0-10): "))
+    catalogo = Catalogo()
 
-universidad1 = Universidad(universidad)
+    titulo = ft.Text("CATÁLOGO DE PRODUCTOS")
 
-estudiante1 = EstudianteUniversitario(
-    nombre,
-    nota1,
-    nota2,
-    nota3,
-    universidad1
-)
-promedio = estudiante1.calcular_promedio()
+    campo_id = ft.TextField(label="ID del producto")
+    campo_nombre = ft.TextField(label="Nombre")
+    campo_precio = ft.TextField(label="Precio")
+    campo_categoria = ft.TextField(label="Categoría")
 
-if promedio > 7:
-    cliente = ClienteMayorista()
-    estado = "Aprobaste"
-else:
-    cliente = ClienteMinorista()
-    estado = "Reprobaste"
+    mensaje = ft.Text()
+    lista_productos = ft.Column()
 
-precio = 172
+    def mostrar_productos():
+        lista_productos.controls.clear()
 
-descuento = cliente.calcularDescuento(precio)
-precio_final = precio - descuento
+        for producto in catalogo.productos:
+            lista_productos.controls.append(
+                ft.Text(
+                    f"ID: {producto.get_id()} | "
+                    f"Nombre: {producto.get_nombre()} | "
+                    f"Precio: ${producto.get_precio()} | "
+                    f"Categoría: {producto.get_categoria()}"
+                )
+            )
 
-print("Resultado")
-print("Nombre:", estudiante1.get_nombre())
-print("Universidad:", universidad1.get_nombre())
-print("Nota 1:", estudiante1.get_nota1())
-print("Nota 2:", estudiante1.get_nota2())
-print("Nota 3:", estudiante1.get_nota3())
-print("Promedio:", promedio)
-print("Estado:", estado)
-print("Precio universidad: $", precio)
-print("Descuento: $", descuento)
-print("Precio final: $", precio_final)
+        page.update()
+
+    def agregar_producto(e):
+
+        try:
+            id_producto = int(campo_id.value)
+            nombre = campo_nombre.value.strip()
+            precio = float(campo_precio.value)
+            categoria = campo_categoria.value.strip()
+
+            if nombre == "" or categoria == "":
+                mensaje.value = "Complete todos los campos."
+                page.update()
+                return
+
+            if id_producto in catalogo.ids:
+                mensaje.value = f"Error: el ID {id_producto} ya existe."
+                page.update()
+                return
+
+            producto = Producto(
+                id_producto,
+                nombre,
+                precio,
+                categoria
+            )
+
+            catalogo.agregar(producto)
+
+            mensaje.value = "Producto agregado correctamente."
+
+            limpiar_campos()
+            mostrar_productos()
+
+        except ValueError:
+            mensaje.value = "ID y precio deben ser números."
+            page.update()
+
+    def buscar_producto(e):
+
+        try:
+            id_producto = int(campo_id.value)
+
+            producto = catalogo.buscar(id_producto)
+
+            if producto:
+                campo_nombre.value = producto.get_nombre()
+                campo_precio.value = str(producto.get_precio())
+                campo_categoria.value = producto.get_categoria()
+
+                mensaje.value = "Producto encontrado."
+            else:
+                mensaje.value = "Producto no encontrado."
+
+            page.update()
+
+        except ValueError:
+            mensaje.value = "Ingrese un ID válido."
+            page.update()
+
+    def actualizar_producto(e):
+
+        try:
+            id_producto = int(campo_id.value)
+            nombre = campo_nombre.value.strip()
+            precio = float(campo_precio.value)
+            categoria = campo_categoria.value.strip()
+
+            if nombre == "" or categoria == "":
+                mensaje.value = "Complete todos los campos."
+                page.update()
+                return
+
+            producto = catalogo.buscar(id_producto)
+
+            if producto is None:
+                mensaje.value = "Producto no encontrado."
+                page.update()
+                return
+
+            catalogo.actualizar(
+                id_producto,
+                nombre,
+                precio,
+                categoria
+            )
+
+            mensaje.value = "Producto actualizado correctamente."
+
+            limpiar_campos()
+            mostrar_productos()
+
+        except ValueError:
+            mensaje.value = "ID y precio deben ser números."
+            page.update()
+
+    def eliminar_producto(e):
+
+        try:
+            id_producto = int(campo_id.value)
+
+            producto = catalogo.buscar(id_producto)
+
+            if producto is None:
+                mensaje.value = "Producto no encontrado."
+                page.update()
+                return
+
+            catalogo.eliminar(id_producto)
+
+            mensaje.value = "Producto eliminado correctamente."
+
+            limpiar_campos()
+            mostrar_productos()
+
+        except ValueError:
+            mensaje.value = "Ingrese un ID válido."
+            page.update()
+
+    def limpiar_campos():
+
+        campo_id.value = ""
+        campo_nombre.value = ""
+        campo_precio.value = ""
+        campo_categoria.value = ""
+
+    boton_agregar = ft.ElevatedButton(
+        text="Agregar producto",
+        on_click=agregar_producto
+    )
+
+    boton_buscar = ft.ElevatedButton(
+        text="Buscar producto",
+        on_click=buscar_producto
+    )
+
+    boton_actualizar = ft.ElevatedButton(
+        text="Actualizar producto",
+        on_click=actualizar_producto
+    )
+
+    boton_eliminar = ft.ElevatedButton(
+        text="Eliminar producto",
+        on_click=eliminar_producto
+    )
+
+    page.add(
+        titulo,
+        campo_id,
+        campo_nombre,
+        campo_precio,
+        campo_categoria,
+
+        ft.Row(
+            [
+                boton_agregar,
+                boton_buscar,
+                boton_actualizar,
+                boton_eliminar
+            ]
+        ),
+
+        mensaje,
+
+        ft.Divider(),
+
+        ft.Text("Productos registrados:"),
+
+        lista_productos
+    )
+
+ft.app(target=main)
